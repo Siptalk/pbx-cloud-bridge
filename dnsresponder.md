@@ -11,7 +11,7 @@ Let's update things and set the server timezone
 sudo apt update
 sudo apt upgrade
 
-dpkg-reconfigure tzdata
+sudo dpkg-reconfigure tzdata
 ```
 
 Install system requirements:
