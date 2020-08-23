@@ -14,8 +14,10 @@ sudo apt upgrade
 dpkg-reconfigure tzdata
 ```
 
-Install Requirements:
-```sudo apt install git python3-scapy supervisor```
+Install system requirements:
+```
+sudo apt install git python3-scapy supervisor
+```
 
 Clone the repo
 ```
