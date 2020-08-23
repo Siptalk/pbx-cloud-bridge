@@ -14,6 +14,26 @@ Clone the repo
 sudo git -C /opt clone https://github.com/Siptalk/pbx-cloud-bridge.git
 sudo chmod 0755 /opt/pbx-cloud-bridge/python/dnsresponder.py 
 ```
+
+Copy the sample config file and modify as required for your setup
+```
+sudo cp /opt/pbx-cloud-bridge/python/sample.config.ini /opt/pbx-cloud-bridge/python/config.ini
+```
+
+Disable systemd-resolved and stop it from binding to port 53
+```
+nano /etc/systemd/resolved.conf 
+```
+add or uncomment the following line
+```
+DNSStubListener=no
+```
+now disable it
+```
+systemctl stop systemd-resolved.service
+systemctl disable systemd-resolved.service
+```
+
 Supervisor configuration:
 ```nano /etc/supervisor/conf.d/dnsresponder.conf```
 
