@@ -32,7 +32,7 @@ sudo cp /opt/pbx-cloud-bridge/python/sample.config.ini /opt/pbx-cloud-bridge/pyt
 
 Disable systemd-resolved and stop it from binding to port 53
 ```
-nano /etc/systemd/resolved.conf 
+sudo nano /etc/systemd/resolved.conf 
 ```
 add or uncomment the following line
 ```
@@ -40,12 +40,14 @@ DNSStubListener=no
 ```
 now disable it
 ```
-systemctl stop systemd-resolved.service
-systemctl disable systemd-resolved.service
+sudo systemctl stop systemd-resolved.service
+sudo systemctl disable systemd-resolved.service
 ```
 
 Supervisor configuration:
-```nano /etc/supervisor/conf.d/dnsresponder.conf```
+```
+sudo nano /etc/supervisor/conf.d/dnsresponder.conf
+```
 
 ```
 [program:dnsresponder]
@@ -57,8 +59,13 @@ stdout_logfile=/var/log/dnsresponder.out.log
 ```
 
 ```
-supervisorctl reread
-supervisorctl update
+sudo supervisorctl reread
+sudo supervisorctl update
+```
+
+Now on another machine you should be able to dig @your.new.server.ip and receive the address you set in the config
+```
+dig @192.168.0.123 google.com A
 ```
 
 Setup the firewall if you haven't already done so.
