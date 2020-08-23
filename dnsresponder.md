@@ -18,7 +18,7 @@ Supervisor configuration:
 ```nano /etc/supervisor/conf.d/dnsresponder.conf```
 
 ```
-program:dnsresponder
+[program:dnsresponder]
 command=/opt/pbx-cloud-bridge/python/dnsresponder.py
 autostart=true
 autorestart=true
