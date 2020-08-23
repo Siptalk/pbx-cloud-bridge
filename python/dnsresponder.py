@@ -21,7 +21,6 @@ try:
 		data, addr = udps.recvfrom(1024)
 		# decode the DNS data
 		decoded = DNS(data)
-		decoded.show()
 
 		qtype = "A"
 		respip = IPv4IP
