@@ -7,7 +7,8 @@ You can place it anywhere you prefer on the server but it can run in situ once t
 The bridge requires a static IP address on the network. Consult your network admin on how to achieve this.
 
 Let's update things and set the server timezone
-```sudo apt update
+```
+sudo apt update
 sudo apt upgrade
 
 dpkg-reconfigure tzdata
