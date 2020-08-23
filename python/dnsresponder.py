@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from scapy.all import DNS, DNSRR
+from scapy.all import DNS, DNSRR, DNSQR
 import socket, os, configparser
 
 dirname  = os.path.dirname(__file__)
@@ -21,6 +21,8 @@ try:
 		data, addr = udps.recvfrom(1024)
 		# decode the DNS data
 		decoded = DNS(data)
+		decoded.show()
+
 		qtype = "A"
 		respip = IPv4IP
 
@@ -32,7 +34,7 @@ try:
 #			respip = IPv4IP
 
 		# build a response
-		resp = DNS(id=decoded["DNS"].id,ancount=1, qr=1, an=DNSRR(type=qtype,ttl=TTL,rdata=respip,rrname=decoded["DNS"].qd.qname))
+		resp = DNS(id=decoded["DNS"].id,ancount=1, qr=1, an=DNSRR(type=qtype,ttl=TTL,rdata=respip,rrname=decoded["DNS"].qd.qname), qd=DNSQR(qname=decoded["DNS"].qd.qname))
 		# send the response
 		udps.sendto(bytes(resp), addr)
 
