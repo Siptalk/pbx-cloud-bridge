@@ -61,6 +61,7 @@ autostart=true
 autorestart=true
 stderr_logfile=/var/log/dnsresponder.err.log
 stdout_logfile=/var/log/dnsresponder.out.log
+
 ```
 
 ```
@@ -73,6 +74,7 @@ autostart=true
 autorestart=true
 stderr_logfile=/var/log/netstatmonitor.err.log
 stdout_logfile=/var/log/netstatmonitor.out.log
+
 ```
 
 ```
