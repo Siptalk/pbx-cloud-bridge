@@ -1,4 +1,4 @@
-# DNS Responder
+# DNS Responder and Net Status Monitor
 
 This process relies on the [Supervisor](http://supervisord.org/) to monitor and manage the Python script that is the DNS Responder.
 
@@ -23,11 +23,17 @@ Clone the repo
 ```
 sudo git -C /opt clone https://github.com/Siptalk/pbx-cloud-bridge.git
 sudo chmod 0755 /opt/pbx-cloud-bridge/python/dnsresponder.py 
+sudo chmod 0755 /opt/pbx-cloud-bridge/python/netstat-monitor.py 
+```
+
+Create a config dir in /etc
+```
+sudo mkdir /etc/cloudbridge
 ```
 
 Copy the sample config file and modify as required for your setup
 ```
-sudo cp /opt/pbx-cloud-bridge/python/sample.config.ini /opt/pbx-cloud-bridge/python/config.ini
+sudo cp /opt/pbx-cloud-bridge/python/sample.config.ini /etc/cloudbridge/dns-config.ini
 ```
 
 Disable systemd-resolved and stop it from binding to port 53
@@ -48,7 +54,6 @@ Supervisor configuration:
 ```
 sudo nano /etc/supervisor/conf.d/dnsresponder.conf
 ```
-
 ```
 [program:dnsresponder]
 command=/opt/pbx-cloud-bridge/python/dnsresponder.py
@@ -56,6 +61,18 @@ autostart=true
 autorestart=true
 stderr_logfile=/var/log/dnsresponder.err.log
 stdout_logfile=/var/log/dnsresponder.out.log
+```
+
+```
+sudo nano /etc/supervisor/conf.d/netstatmonitor.conf
+```
+```
+[program:netstatmonitor]
+command=/opt/pbx-cloud-bridge/python/netstat-monitor.py
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/netstatmonitor.err.log
+stdout_logfile=/var/log/netstatmonitor.out.log
 ```
 
 ```

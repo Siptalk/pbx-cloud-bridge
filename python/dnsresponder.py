@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 
 from scapy.all import DNS, DNSRR, DNSQR
-import socket, os, configparser
+import socket, configparser
 
-dirname  = os.path.dirname(__file__)
-cfg_path = os.path.join(dirname, 'config.ini')
+cfg_path = '/etc/cloudbridge/dns-config.ini'
 config   = configparser.ConfigParser()
 config.read(cfg_path)
 
