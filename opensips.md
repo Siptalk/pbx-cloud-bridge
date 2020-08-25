@@ -20,17 +20,32 @@ Assuming you have cloned the repo at this point, if not you can follow the instr
 Move the default config file and copy the new one into place
 ```
 sudo mv /etc/opensips/opensips.cfg /etc/opensips/opensips.cfg_bak
-sudo cp /opt/opensips/opensips.cfg /etc/opensips/opensips.cfg
+sudo cp /opt/pbx-cloud-bridge/opensips/opensips.cfg /etc/opensips/opensips.cfg
 ```
 
 We need to change the logging to feed into its own log file
 ```
-sudo echo "local7.* /var/log/opensips.log\n" >> /etc/rsyslog.d/opensips.conf
+sudo echo "local7.* /var/log/opensips.log" >> /etc/rsyslog.d/opensips.conf
 ```
 
 Now restart syslog
 ```
 sudo service rsyslog restart
+```
+
+Add the opensips configuration scripts to /etc/cloudbridge
+```
+sudo nano /etc/cloudbridge/opensips-listen.conf
+
+listen=udp:192.168.0.123:5060 # change the ip to your bridge ip
+
+```
+
+```
+sudo nano /etc/cloudbridge/sip-conf.ini
+
+
+alwayslocal=no
 ```
 
 Now restart Opensips
