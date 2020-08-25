@@ -8,12 +8,12 @@ Make sure you're connected to the server from an address in this range, or you'l
 
 Construct the firewall .. add any other options as required for your setup.
 ```
-ufw default deny incoming
-ufw default allow outgoing
-ufw allow from 192.168.0.0/24
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow from 192.168.0.0/24
 ```
 
 Enable the firewall .. this is where you could lock yourself out, check the above settings.
 ```
-ufw enable
+sudo ufw enable
 ```
